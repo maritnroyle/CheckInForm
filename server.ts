@@ -41,7 +41,7 @@ async function startServer() {
 
         doc.fontSize(20).text('Agreement and House Rules', { align: 'center' });
         doc.moveDown();
-        doc.fontSize(12).text(`Guest Name: ${fullName}`);
+        doc.fontSize(12).text(`Name: ${fullName}`);
         doc.text(`Check-in Date: ${formattedCheckIn}`);
         doc.text(`Check-out Date: ${formattedCheckOut}`);
         doc.moveDown();
@@ -50,27 +50,27 @@ async function startServer() {
         doc.moveDown(0.5);
 
         doc.fontSize(12).text('1. Term of Agreement', { underline: true });
-        doc.fontSize(10).text(`This agreement shall commence on ${formattedCheckIn} and continue on a week-to-week basis. The Flatmate may terminate this agreement by providing 14 days’ written notice. Notwithstanding the above, this agreement may be terminated immediately and without notice if the Flatmate engages in illegal activity, physical violence, or behavior that seriously threatens the safety or well-being of other occupants.`);
+        doc.fontSize(10).text(`This agreement shall commence on ${formattedCheckIn} and continue on a week-to-week basis. You may terminate this agreement by providing 14 days’ notice.\nNotwithstanding the above, this agreement may be terminated immediately and without notice if you engage in illegal activity, physical violence, or behavior that seriously threatens the safety or well-being of other occupants.`);
         doc.moveDown(0.5);
 
         doc.fontSize(12).text('2. Rent', { underline: true });
-        doc.fontSize(10).text('The Flatmate agrees to pay their designated share of the weekly rent. The rent includes electricity, water, and internet. The Flatmate may not assign their space or allow others to move into the flat. In any instance where a full seven-day weekly cycle is not completed (such as during the first or final week), a pro-rata rate of $35.00 per day shall be applied for each day of occupancy.');
+        doc.fontSize(10).text('You agree to pay the designated share of the weekly rent. The rent includes electricity, water, and internet. You are not permitted to sublet the room or allow other individuals to move into the property.\nIn any instance where a full seven-day weekly cycle is not completed (such as during the first or final week of occupancy), a pro-rata rate of $35.00 per day shall be applied for each day of occupancy.');
         doc.moveDown(0.5);
 
         doc.fontSize(12).text('3. Bond', { underline: true });
-        doc.fontSize(10).text('At the end of this agreement, the bond will be refunded. However, the bond may be withheld or subject to deductions if the Flatmate leaves without providing the required notice, owes outstanding rent, or fails to clean and return the bedding to a tidy condition upon check-out.');
+        doc.fontSize(10).text('At the end of this agreement, the bond will be refunded within 7 days. However, the bond may be withheld or subject to deductions if you:\n• Leave without providing the required 14 days\' notice;\n• Owe outstanding rent;\n• Cause damage to the property;\n• Fail to clean and return the bedding to a tidy condition upon check-out.');
         doc.moveDown(0.5);
 
         doc.fontSize(12).text('4. House Rules', { underline: true });
-        doc.fontSize(10).text('Flatmate agrees to abide by all established house rules, maintain cleanliness in common areas, and respect the quiet enjoyment of all other occupants.');
+        doc.fontSize(10).text('You agree to abide by all established house rules, maintain cleanliness in common areas, and respect the quiet enjoyment of all other occupants.');
         doc.moveDown(0.5);
 
         doc.fontSize(12).text('5. Liability', { underline: true });
-        doc.fontSize(10).text('The Flatmate is responsible for the cost of repairing any damage caused by themselves or their guests.');
+        doc.fontSize(10).text('You are responsible for the cost of repairing any damage caused to the premises or furnishings by yourself or your guests.');
         doc.moveDown(0.5);
 
         doc.fontSize(12).text('6. Disputes', { underline: true });
-        doc.fontSize(10).text('If a disagreement arises that cannot be resolved through discussion, the Flatmate agrees to refer the matter to the Disputes Tribunal.');
+        doc.fontSize(10).text('If a disagreement arises that cannot be resolved through discussion, you agree to refer the matter to the Disputes Tribunal.');
         doc.moveDown();
 
         doc.fontSize(14).text('House Rules', { underline: true });

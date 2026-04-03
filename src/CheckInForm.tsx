@@ -398,28 +398,36 @@ export default function CheckInForm() {
                 <div className="bg-white border rounded-md p-4 text-sm text-gray-700 space-y-4 h-64 overflow-y-auto">
                   <div>
                     <h4 className="font-semibold text-gray-900">1. Term of Agreement</h4>
-                    <p>This agreement shall commence on [Check-in Date] and continue on a week-to-week basis. The Flatmate may terminate this agreement by providing 14 days’ written notice. Notwithstanding the above, this agreement may be terminated immediately and without notice if the Flatmate engages in illegal activity, physical violence, or behavior that seriously threatens the safety or well-being of other occupants.</p>
+                    <p>This agreement shall commence on [Check-in Date] and continue on a week-to-week basis. You may terminate this agreement by providing 14 days’ notice.<br/>
+Notwithstanding the above, this agreement may be terminated immediately and without notice if you engage in illegal activity, physical violence, or behavior that seriously threatens the safety or well-being of other occupants.</p>
                   </div>
                   <div>
                     <h4 className="font-semibold text-gray-900">2. Rent</h4>
-                    <p>The Flatmate agrees to pay their designated share of the weekly rent. The rent includes electricity, water, and internet. The Flatmate may not assign their space or allow others to move into the flat. In any instance where a full seven-day weekly cycle is not completed (such as during the first or final week), a pro-rata rate of $35.00 per day shall be applied for each day of occupancy.</p>
+                    <p>You agree to pay the designated share of the weekly rent. The rent includes electricity, water, and internet. You are not permitted to sublet the room or allow other individuals to move into the property.<br/>
+In any instance where a full seven-day weekly cycle is not completed (such as during the first or final week of occupancy), a pro-rata rate of $35.00 per day shall be applied for each day of occupancy.</p>
                   </div>
                   <div>
                     <h4 className="font-semibold text-gray-900">3. Bond</h4>
-                    <p>At the end of this agreement, the bond will be refunded. However, the bond may be withheld or subject to deductions if the Flatmate leaves without providing the required notice, owes outstanding rent, or fails to clean and return the bedding to a tidy condition upon check-out.</p>
+                    <p>At the end of this agreement, the bond will be refunded within 7 days. However, the bond may be withheld or subject to deductions if you:</p>
+                    <ul className="list-disc pl-5 mt-1 space-y-1">
+                      <li>Leave without providing the required 14 days' notice;</li>
+                      <li>Owe outstanding rent;</li>
+                      <li>Cause damage to the property;</li>
+                      <li>Fail to clean and return the bedding to a tidy condition upon check-out.</li>
+                    </ul>
                   </div>
                   <div>
                     <h4 className="font-semibold text-gray-900">4. House Rules</h4>
-                    <p>Flatmate agrees to abide by all established house rules, maintain cleanliness in common areas, and respect the quiet enjoyment of all other occupants.</p>
+                    <p>You agree to abide by all established house rules, maintain cleanliness in common areas, and respect the quiet enjoyment of all other occupants.</p>
                     <HouseRulesDialog />
                   </div>
                   <div>
                     <h4 className="font-semibold text-gray-900">5. Liability</h4>
-                    <p>The Flatmate is responsible for the cost of repairing any damage caused by themselves or their guests.</p>
+                    <p>You are responsible for the cost of repairing any damage caused to the premises or furnishings by yourself or your guests.</p>
                   </div>
                   <div>
                     <h4 className="font-semibold text-gray-900">6. Disputes</h4>
-                    <p>If a disagreement arises that cannot be resolved through discussion, the Flatmate agrees to refer the matter to the Disputes Tribunal.</p>
+                    <p>If a disagreement arises that cannot be resolved through discussion, you agree to refer the matter to the Disputes Tribunal.</p>
                   </div>
                 </div>
 
