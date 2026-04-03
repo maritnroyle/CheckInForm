@@ -27,7 +27,7 @@ const formSchema = z.object({
   email: z.string().email('Invalid email address.'),
   phone: z.string().regex(/^\+?[0-9\s\-()]{7,20}$/, 'Please enter a valid phone number.'),
   nationality: z.string().min(2, 'Nationality is required.'),
-  passportNumber: z.string().min(2, 'Passport/ID number is required.'),
+  passportNumber: z.string().min(2, 'Passport number is required.'),
   checkInDate: z.date({
     message: 'A check-in date is required.',
   }),
@@ -270,8 +270,8 @@ export default function CheckInForm() {
                   </div>
 
                   <div className="space-y-2 md:col-span-2">
-                    <Label htmlFor="passportNumber">Passport / ID Number</Label>
-                    <Input id="passportNumber" placeholder="Enter your passport or ID number" {...register('passportNumber')} />
+                    <Label htmlFor="passportNumber">Passport Number</Label>
+                    <Input id="passportNumber" placeholder="Enter your passport number" {...register('passportNumber')} />
                     {errors.passportNumber && <p className="text-sm text-red-500">{errors.passportNumber.message}</p>}
                   </div>
                 </div>
