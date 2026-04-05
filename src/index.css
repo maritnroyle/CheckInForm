@@ -128,3 +128,15 @@
     @apply font-sans;
     }
 }
+
+.PhoneInputCountry {
+  @apply bg-background border border-input rounded-md px-3 flex items-center h-10;
+}
+
+.PhoneInputCountryIcon {
+  @apply w-6 h-4 shadow-sm;
+}
+
+.PhoneInputCountrySelectArrow {
+  @apply ml-2 opacity-50;
+}

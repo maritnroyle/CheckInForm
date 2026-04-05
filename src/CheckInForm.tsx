@@ -5,6 +5,8 @@ import * as z from 'zod';
 import { format } from 'date-fns';
 import { Calendar as CalendarIcon, MapPin, Globe, MessageCircle, FileText, Eraser, Instagram, Facebook } from 'lucide-react';
 import SignatureCanvas from 'react-signature-canvas';
+import PhoneInput from 'react-phone-number-input';
+import 'react-phone-number-input/style.css';
 
 import { HouseRulesDialog } from './HouseRulesDialog';
 import { Logo } from './components/Logo';
@@ -21,11 +23,13 @@ import { Label } from '@/components/ui/label';
 import { Separator } from '@/components/ui/separator';
 import { cn } from '@/lib/utils';
 
+import { isValidPhoneNumber } from 'react-phone-number-input';
+
 const formSchema = z.object({
   fullName: z.string().min(2, 'Full name must be at least 2 characters.'),
   gender: z.enum(['Male', 'Female'], { message: 'Gender is required.' }),
   email: z.string().email('Invalid email address.'),
-  phone: z.string().regex(/^\+?[0-9\s\-()]{7,20}$/, 'Please enter a valid phone number.'),
+  phone: z.string().min(1, 'Phone number is required.').refine((val) => val ? isValidPhoneNumber(val) : false, 'Please enter a valid phone number.'),
   nationality: z.string().min(2, 'Nationality is required.'),
   passportNumber: z.string().min(2, 'Passport number is required.'),
   checkInDate: z.date({
@@ -259,7 +263,21 @@ export default function CheckInForm() {
 
                   <div className="space-y-2">
                     <Label htmlFor="phone">Phone Number / WhatsApp</Label>
-                    <Input id="phone" placeholder="+1 234 567 8900" {...register('phone')} />
+                    <Controller
+                      control={control}
+                      name="phone"
+                      render={({ field }) => (
+                        <PhoneInput
+                          {...field}
+                          id="phone"
+                          placeholder="+1 234 567 8900"
+                          defaultCountry="NZ"
+                          international
+                          inputComponent={Input}
+                          className="flex gap-2"
+                        />
+                      )}
+                    />
                     {errors.phone && <p className="text-sm text-red-500">{errors.phone.message}</p>}
                   </div>
 
