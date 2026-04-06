@@ -45,14 +45,14 @@ export function HouseRulesDialog() {
           <section>
             <h3 className="text-lg font-semibold text-gray-900 mb-2">Kitchen and Fridge</h3>
             <ul className="list-disc pl-5 space-y-1">
-              <li>Please kindly make sure you organize your belongings in the food cabinet and fridge accordingly. Keep it organized within 1 shelf per room (1 shelf shared by 2 pax). There are 2 fridge/freezers so there is enough space for everyone.</li>
-              <li>Do not overcrowd the fridge or freezer. Remove spoiled food promptly and keep your designated space clean.</li>
-              <li>All kitchen appliances must be cleaned after use and returned to the cupboard. Tidy and wipe down common kitchen areas after use.</li>
+              <li>Please organize your belongings in the food cabinets and fridges accordingly. Storage is limited to one shelf per room (shared by two people). With two fridge/freezers available, there is ample space for everyone if kept organized.</li>
+              <li>Do not overcrowd the fridge or freezer. Please remove spoiled food promptly and keep your designated storage space clean.</li>
+              <li>All kitchen appliances must be cleaned and returned to the cupboard immediately after use. Please wipe down common surfaces and tidy the area after cooking.</li>
               <li>Cooktops and ovens must be used safely. Ensure all knobs and switches are turned off and the units are left clean for the next person.</li>
-              <li>Dispose off and do not leave any food scraps in the sink. All rubbish must be wrapped and placed in the bin.</li>
-              <li>Please clean your dishes immediately once you finish your meals.</li>
+              <li>Dispose of all food scraps in the bin; do not leave them in the sink. All rubbish must be wrapped before being placed in the kitchen bin.</li>
+              <li>Please wash, dry, and put away your dishes immediately after you finish your meals. Do not leave them in the sink.</li>
               <li>DO NOT pour cooking oil, fats or grease into the sink, as this will cause blockages. Contain these liquids in a sealed container and dispose of them into the main rubbish bin outside.</li>
-              <li><strong>Note:</strong> If a professional plumber is required to clear blockages in the sink, the cost of the plumbing service will be shared equally by all current occupants.</li>
+              <li className="italic">Note: If a professional plumber is required to clear blockages in the sink, the cost of the plumbing service will be shared equally by all current occupants.</li>
             </ul>
           </section>
 
@@ -94,20 +94,21 @@ export function HouseRulesDialog() {
           <section>
             <h3 className="text-lg font-semibold text-gray-900 mb-2">Parking</h3>
             <ul className="list-disc pl-5 space-y-1">
-              <li>Do not park it on the grass area (the grass area near to the main tree/next to the bedroom) as this will damage the lawn.</li>
-              <li>Please make sure you register the car plate number with us. Any unregistered car within the house’s compound will be towed away.</li>
-              <li>Parking space is based on a first come first served basis.</li>
-              <li>Kindly note that onsite parking is strictly for flatmates only. Please make sure all visitors’ cars are parked outside the house or on the street.</li>
+              <li>Do not park on the grass (specifically the area near the main tree next to the bedroom), as this will damage the lawn.</li>
+              <li>Please register your vehicle’s license plate number with us. Any unregistered vehicle found on the property will be towed away at the owner's expense.</li>
+              <li>Parking spaces are available on a first-come, first-served basis.</li>
+              <li>On-site parking is strictly for residents. Please ensure that all visitors park their vehicles on the street and not within the property compound.</li>
             </ul>
           </section>
 
           <section>
             <h3 className="text-lg font-semibold text-gray-900 mb-2">Guest and Visitors</h3>
             <ul className="list-disc pl-5 space-y-1">
-              <li>No visitors or guests are allowed between 11:00 PM and 06:00 AM.</li>
-              <li>Visitors or guests are not permitted to stay overnight.</li>
-              <li>All visitors/guests must leave the property by 11:00 PM, ensuring that the common areas are left tidy.</li>
-              <li>No party with guests or visitors in the house. Flamate and their visitors must ensure orderly conduct with no disturbance to other flatmates or neighbors.</li>
+              <li>No visitors/guests are allowed between 11:00 PM and 06:00 AM.</li>
+              <li>All visitors/guests must leave the property by 11:00 PM.</li>
+              <li>Visitors or guests are not permitted to stay overnight under any circumstances.</li>
+              <li>You must ensure that all common areas are left clean and tidy after your visitors/guests depart.</li>
+              <li>Parties are strictly prohibited. You are responsible for your guests' behavior and must ensure their conduct does not disturb other flatmates or neighbors.</li>
             </ul>
           </section>
 

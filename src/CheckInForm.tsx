@@ -422,7 +422,7 @@ Notwithstanding the above, this agreement may be terminated immediately and with
                   <div>
                     <h4 className="font-semibold text-gray-900">2. Rent</h4>
                     <p>You agree to pay the designated share of the weekly rent. The rent includes electricity, water, and internet. You are not permitted to sublet the room or allow other individuals to move into the property.<br/>
-In any instance where a full seven-day weekly cycle is not completed (such as during the first or final week of occupancy), a pro-rata rate of $35.00 per day shall be applied for each day of occupancy.</p>
+In any instance where a full seven-day weekly cycle is not completed, a pro-rata rate of $35.00 per day shall be applied for each day of occupancy.</p>
                   </div>
                   <div>
                     <h4 className="font-semibold text-gray-900">3. Bond</h4>

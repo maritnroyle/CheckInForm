@@ -17,7 +17,7 @@ async function startServer() {
 
   app.post("/api/send-email", async (req, res) => {
     try {
-      const { email, fullName, checkInDate, checkOutDate, signature } = req.body;
+      const { email, fullName, passportNumber, checkInDate, checkOutDate, signature } = req.body;
 
       if (!process.env.GMAIL_USER || !process.env.GMAIL_APP_PASSWORD) {
         return res.status(500).json({ error: "Gmail credentials not configured." });
@@ -33,7 +33,7 @@ async function startServer() {
 
       // Generate PDF
       const pdfBuffer = await new Promise<Buffer>((resolve, reject) => {
-        const doc = new PDFDocument({ margin: 50 });
+        const doc = new PDFDocument({ margin: 50, bufferPages: true });
         const buffers: Buffer[] = [];
         doc.on('data', buffers.push.bind(buffers));
         doc.on('end', () => resolve(Buffer.concat(buffers)));
@@ -41,43 +41,48 @@ async function startServer() {
 
         doc.fontSize(20).text('Agreement and House Rules', { align: 'center' });
         doc.moveDown();
-        doc.fontSize(12).text(`Name: ${fullName}`);
-        doc.text(`Check-in Date: ${formattedCheckIn}`);
-        doc.text(`Check-out Date: ${formattedCheckOut}`);
-        doc.moveDown();
         
         doc.fontSize(14).text('Agreement', { underline: true });
         doc.moveDown(0.5);
 
         doc.fontSize(12).text('1. Term of Agreement', { underline: true });
-        doc.fontSize(10).text(`This agreement shall commence on ${formattedCheckIn} and continue on a week-to-week basis. You may terminate this agreement by providing 14 days’ notice.\nNotwithstanding the above, this agreement may be terminated immediately and without notice if you engage in illegal activity, physical violence, or behavior that seriously threatens the safety or well-being of other occupants.`);
+        doc.fontSize(12).text(`This agreement shall commence on ${formattedCheckIn} and continue on a week-to-week basis. You may terminate this agreement by providing 14 days’ notice.`);
+        doc.moveDown(0.5);
+        doc.text('Notwithstanding the above, this agreement may be terminated immediately and without notice if you engage in illegal activity, physical violence, or behavior that seriously threatens the safety or well-being of other occupants.');
         doc.moveDown(0.5);
 
         doc.fontSize(12).text('2. Rent', { underline: true });
-        doc.fontSize(10).text('You agree to pay the designated share of the weekly rent. The rent includes electricity, water, and internet. You are not permitted to sublet the room or allow other individuals to move into the property.\nIn any instance where a full seven-day weekly cycle is not completed (such as during the first or final week of occupancy), a pro-rata rate of $35.00 per day shall be applied for each day of occupancy.');
+        doc.fontSize(12).text('You agree to pay the designated share of the weekly rent. The rent includes electricity, water, and internet. You are not permitted to sublet the room or allow other individuals to move into the property.');
+        doc.moveDown(0.5);
+        doc.text('In any instance where a full seven-day weekly cycle is not completed, a pro-rata rate of $35.00 per day shall be applied for each day of occupancy.');
         doc.moveDown(0.5);
 
         doc.fontSize(12).text('3. Bond', { underline: true });
-        doc.fontSize(10).text('At the end of this agreement, the bond will be refunded within 7 days. However, the bond may be withheld or subject to deductions if you:\n• Leave without providing the required 14 days\' notice;\n• Owe outstanding rent;\n• Cause damage to the property;\n• Fail to clean and return the bedding to a tidy condition upon check-out.');
+        doc.fontSize(12).text('At the end of this agreement, the bond will be refunded within 7 days. However, the bond may be withheld or subject to deductions if you:');
+        doc.text('• Leave without providing the required 14 days\' notice;');
+        doc.text('• Owe outstanding rent;');
+        doc.text('• Cause damage to the property;');
+        doc.text('• Fail to clean and return the bedding to a tidy condition upon check-out.');
         doc.moveDown(0.5);
 
         doc.fontSize(12).text('4. House Rules', { underline: true });
-        doc.fontSize(10).text('You agree to abide by all established house rules, maintain cleanliness in common areas, and respect the quiet enjoyment of all other occupants.');
+        doc.fontSize(12).text('You agree to abide by all established house rules, maintain cleanliness in common areas, and respect the quiet enjoyment of all other occupants.');
         doc.moveDown(0.5);
 
         doc.fontSize(12).text('5. Liability', { underline: true });
-        doc.fontSize(10).text('You are responsible for the cost of repairing any damage caused to the premises or furnishings by yourself or your guests.');
+        doc.fontSize(12).text('You are responsible for the cost of repairing any damage caused to the premises or furnishings by yourself or your guests.');
         doc.moveDown(0.5);
 
         doc.fontSize(12).text('6. Disputes', { underline: true });
-        doc.fontSize(10).text('If a disagreement arises that cannot be resolved through discussion, you agree to refer the matter to the Disputes Tribunal.');
+        doc.fontSize(12).text('If a disagreement arises that cannot be resolved through discussion, you agree to refer the matter to the Disputes Tribunal.');
         doc.moveDown();
 
+        doc.addPage();
         doc.fontSize(14).text('House Rules', { underline: true });
         doc.moveDown(0.5);
         
         doc.fontSize(12).text('General Conduct', { underline: true });
-        doc.fontSize(10).text('- Please be kind and respectful to all flatmates.');
+        doc.fontSize(12).text('- Please be kind and respectful to all flatmates.');
         doc.text('- Do not use or take the belongings of others without explicit permission.');
         doc.text('- No smoking or vaping inside the house.');
         doc.text('- No pets are permitted.');
@@ -87,61 +92,66 @@ async function startServer() {
         doc.moveDown(0.5);
 
         doc.fontSize(12).text('Kitchen and Fridge', { underline: true });
-        doc.fontSize(10).text('- Please kindly make sure you organize your belongings in the food cabinet and fridge accordingly. Keep it organized within 1 shelf per room (1 shelf shared by 2 pax). There are 2 fridge/freezers so there is enough space for everyone.');
-        doc.text('- Do not overcrowd the fridge or freezer. Remove spoiled food promptly and keep your designated space clean.');
-        doc.text('- All kitchen appliances must be cleaned after use and returned to the cupboard. Tidy and wipe down common kitchen areas after use.');
+        doc.fontSize(12).text('- Please organize your belongings in the food cabinets and fridges accordingly. Storage is limited to one shelf per room (shared by two people). With two fridge/freezers available, there is ample space for everyone if kept organized.');
+        doc.text('- Do not overcrowd the fridge or freezer. Please remove spoiled food promptly and keep your designated storage space clean.');
+        doc.text('- All kitchen appliances must be cleaned and returned to the cupboard immediately after use. Please wipe down common surfaces and tidy the area after cooking.');
         doc.text('- Cooktops and ovens must be used safely. Ensure all knobs and switches are turned off and the units are left clean for the next person.');
-        doc.text('- Dispose off and do not leave any food scraps in the sink. All rubbish must be wrapped and placed in the bin.');
-        doc.text('- Please clean your dishes immediately once you finish your meals.');
+        doc.text('- Dispose of all food scraps in the bin; do not leave them in the sink. All rubbish must be wrapped before being placed in the kitchen bin.');
+        doc.text('- Please wash, dry, and put away your dishes immediately after you finish your meals. Do not leave them in the sink.');
         doc.text('- DO NOT pour cooking oil, fats or grease into the sink, as this will cause blockages. Contain these liquids in a sealed container and dispose of them into the main rubbish bin outside.');
-        doc.text('- Note: If a professional plumber is required to clear blockages in the sink, the cost of the plumbing service will be shared equally by all current occupants.');
-        doc.moveDown(0.5);
+        doc.font('Helvetica-Oblique').text('- Note: If a professional plumber is required to clear blockages in the sink, the cost of the plumbing service will be shared equally by all current occupants.');
+        doc.font('Helvetica').moveDown(0.5);
 
         doc.fontSize(12).text('Living and Dining room', { underline: true });
-        doc.fontSize(10).text('- Do not leave any personal items in the common area.');
+        doc.fontSize(12).text('- Do not leave any personal items in the common area.');
         doc.text('- Make sure you clean and wipe off the dining table after meals.');
         doc.text('- Do not leave the window open at night or when leaving the house.');
         doc.moveDown(0.5);
 
         doc.fontSize(12).text('Laundry', { underline: true });
-        doc.fontSize(10).text('- Use of the washing machine and dryer is limited to once per week per person.');
+        doc.fontSize(12).text('- Use of the washing machine and dryer is limited to once per week per person.');
         doc.text('- Please schedule your laundry so it is completed before 10:00 PM.');
         doc.text('- Remove your laundry from the machines promptly once the cycle is finished.');
         doc.moveDown(0.5);
 
         doc.fontSize(12).text('Bedrooms', { underline: true });
-        doc.fontSize(10).text('- A healthy room starts from good sunlight and lots of ventilation. Please open up the curtains and air up your room on a regular basis to prevent build up of mold and mildew - this is for your own benefits!');
+        doc.fontSize(12).text('- A healthy room starts from good sunlight and lots of ventilation. Please open up the curtains and air up your room on a regular basis to prevent build up of mold and mildew - this is for your own benefits!');
         doc.text('- Keep your room clean and tidy and vacuum it regularly.');
         doc.text('- Do not use any personal heating appliances in your room (i.e. electric heater etc), as this may cause overload on the main circuit breaker and pose fire risk.');
         doc.moveDown(0.5);
 
         doc.fontSize(12).text('Bathrooms', { underline: true });
-        doc.fontSize(10).text('- Keep the bathroom clean and ensure all hair is removed from the shower drain after use.');
+        doc.fontSize(12).text('- Keep the bathroom clean and ensure all hair is removed from the shower drain after use.');
         doc.text('- Ensure the toilet is flushed and left clean after use.');
         doc.moveDown(0.5);
 
         doc.fontSize(12).text('Parking', { underline: true });
-        doc.fontSize(10).text('- Do not park it on the grass area (the grass area near to the main tree/next to the bedroom) as this will damage the lawn.');
-        doc.text('- Please make sure you register the car plate number with us. Any unregistered car within the house’s compound will be towed away.');
-        doc.text('- Parking space is based on a first come first served basis.');
-        doc.text('- Kindly note that onsite parking is strictly for flatmates only. Please make sure all visitors’ cars are parked outside the house or on the street.');
+        doc.fontSize(12).text('- Do not park on the grass (specifically the area near the main tree next to the bedroom), as this will damage the lawn.');
+        doc.text('- Please register your vehicle’s license plate number with us. Any unregistered vehicle found on the property will be towed away at the owner\'s expense.');
+        doc.text('- Parking spaces are available on a first-come, first-served basis.');
+        doc.text('- On-site parking is strictly for residents. Please ensure that all visitors park their vehicles on the street and not within the property compound.');
         doc.moveDown(0.5);
 
         doc.fontSize(12).text('Guest and Visitors', { underline: true });
-        doc.fontSize(10).text('- No visitors or guests are allowed between 11:00 PM and 06:00 AM.');
-        doc.text('- Visitors or guests are not permitted to stay overnight.');
-        doc.text('- All visitors/guests must leave the property by 11:00 PM, ensuring that the common areas are left tidy.');
-        doc.text('- No party with guests or visitors in the house. Flamate and their visitors must ensure orderly conduct with no disturbance to other flatmates or neighbors.');
+        doc.fontSize(12).text('- No visitors/guests are allowed between 11:00 PM and 06:00 AM.');
+        doc.text('- All visitors/guests must leave the property by 11:00 PM.');
+        doc.text('- Visitors or guests are not permitted to stay overnight under any circumstances.');
+        doc.text('- You must ensure that all common areas are left clean and tidy after your visitors/guests depart.');
+        doc.text('- Parties are strictly prohibited. You are responsible for your guests\' behavior and must ensure their conduct does not disturb other flatmates or neighbors.');
         doc.moveDown(0.5);
 
         doc.fontSize(12).text('Check-Out and vacating the room', { underline: true });
-        doc.fontSize(10).text('- Please make sure you wash & dry the bed sheets / pillow cases / duvets cover (do not remove bed protector) before you leave.');
+        doc.fontSize(12).text('- Please make sure you wash & dry the bed sheets / pillow cases / duvets cover (do not remove bed protector) before you leave.');
         doc.text('- Kindly put it back as its original set up and send a photo before checking out.');
         doc.text('- The key card must be left inside the room upon vacating.');
         doc.text('- If you are the last person or there are no other flatmates in the room, kindly ensure the windows are closed before you leave.');
-        doc.moveDown();
+        doc.moveDown(2);
 
-        doc.fontSize(12).text('I acknowledge that I have read, understood, and agree to abide by the House Rules stated above.');
+        doc.fontSize(12).text('I acknowledge that I have read, understood, and agree to abide by the Agreement and House Rules stated above.');
+        doc.moveDown();
+        doc.text(`Name: ${fullName}`);
+        doc.text(`Passport Number: ${passportNumber || 'N/A'}`);
+        doc.text(`Check-in Date: ${formattedCheckIn}`);
         doc.moveDown();
         doc.text('Signature:');
         
@@ -153,6 +163,23 @@ async function startServer() {
           } catch (e) {
             console.error("Failed to add signature to PDF", e);
           }
+        }
+
+        // Add page numbers
+        const range = doc.bufferedPageRange();
+        for (let i = range.start; i < range.start + range.count; i++) {
+          doc.switchToPage(i);
+          
+          const oldBottomMargin = doc.page.margins.bottom;
+          doc.page.margins.bottom = 0;
+          
+          doc.fontSize(10).text(`Page ${i + 1} of ${range.count}`, 
+            50, 
+            doc.page.height - 30, 
+            { align: 'center', width: doc.page.width - 100 }
+          );
+          
+          doc.page.margins.bottom = oldBottomMargin;
         }
 
         doc.end();
