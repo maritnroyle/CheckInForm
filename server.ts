@@ -169,7 +169,7 @@ async function startServer() {
       const mailOptions = {
         from: process.env.GMAIL_USER,
         to: email,
-        subject: "Check-in Confirmation - WhiteCloud Homestay",
+        subject: "Check-in Confirmation",
         text: `Dear ${fullName},\n\nThank you for completing your check-in for WhiteCloud Homestay.\n\nYour check-in date is ${formattedCheckIn} and check-out date is ${formattedCheckOut}.\n\nPlease find attached a copy of the Agreement and House Rules with your signature.\n\nWe look forward to hosting you!\n\nBest regards,\nWhiteCloud Homestay`,
         html: `<p>Dear ${fullName},</p><p>Thank you for completing your check-in for WhiteCloud Homestay.</p><p>Your check-in date is <strong>${formattedCheckIn}</strong> and check-out date is <strong>${formattedCheckOut}</strong>.</p><p>Please find attached a copy of the Agreement and House Rules with your signature.</p><p>We look forward to hosting you!</p><p>Best regards,<br/>WhiteCloud Homestay</p>`,
         attachments: [
