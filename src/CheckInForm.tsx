@@ -31,7 +31,7 @@ const formSchema = z.object({
   email: z.string().email('Invalid email address.'),
   phone: z.string().min(1, 'Phone number is required.').refine((val) => val ? isValidPhoneNumber(val) : false, 'Please enter a valid phone number.'),
   nationality: z.string().min(2, 'Nationality is required.'),
-  passportNumber: z.string().min(2, 'Passport number is required.'),
+  passportNumber: z.string().min(6, 'Passport number must be at least 6 characters.').max(20, 'Passport number must be at most 20 characters.').regex(/^[a-zA-Z0-9]+$/, 'Passport number must contain only letters and numbers.'),
   checkInDate: z.date({
     message: 'A check-in date is required.',
   }),
