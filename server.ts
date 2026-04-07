@@ -141,7 +141,7 @@ async function startServer() {
         doc.moveDown(0.5);
 
         doc.fontSize(12).text('Check-Out and vacating the room', { underline: true });
-        doc.fontSize(12).text('- Please make sure you wash & dry the bed sheets / pillow cases / duvets cover (do not remove bed protector) before you leave.');
+        doc.fontSize(12).text('- Please make sure you wash & dry the bed sheets / pillow cases / duvets cover (do not remove mattress protector and electric blanket) before you leave.');
         doc.text('- Kindly put it back as its original set up and send a photo before checking out.');
         doc.text('- The key card must be left inside the room upon vacating.');
         doc.text('- If you are the last person or there are no other flatmates in the room, kindly ensure the windows are closed before you leave.');

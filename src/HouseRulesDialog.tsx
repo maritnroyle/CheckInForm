@@ -115,7 +115,7 @@ export function HouseRulesDialog() {
           <section>
             <h3 className="text-lg font-semibold text-gray-900 mb-2">Check-Out and vacating the room</h3>
             <ul className="list-disc pl-5 space-y-1">
-              <li>Please make sure you wash & dry the bed sheets / pillow cases / duvets cover (do not remove bed protector) before you leave.</li>
+              <li>Please make sure you wash & dry the bed sheets / pillow cases / duvets cover (do not remove mattress protector and electric blanket) before you leave.</li>
               <li>Kindly put it back as its original set up and send a photo before checking out.</li>
               <li>The key card must be left inside the room upon vacating.</li>
               <li>If you are the last person or there are no other flatmates in the room, kindly ensure the windows are closed before you leave.</li>
