@@ -534,6 +534,12 @@ In any instance where a full seven-day weekly cycle is not completed, a pro-rata
                 <div className="font-semibold text-gray-500">Phone:</div>
                 <div>{formDataToSubmit.phone}</div>
 
+                <div className="font-semibold text-gray-500">Nationality:</div>
+                <div>{formDataToSubmit.nationality}</div>
+
+                <div className="font-semibold text-gray-500">Passport Number:</div>
+                <div>{formDataToSubmit.passportNumber}</div>
+
                 <div className="font-semibold text-gray-500">Check-in Date:</div>
                 <div>{format(formDataToSubmit.checkInDate, 'dd MMM yyyy')}</div>
 

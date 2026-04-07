@@ -39,7 +39,7 @@ async function startServer() {
         doc.on('end', () => resolve(Buffer.concat(buffers)));
         doc.on('error', reject);
 
-        doc.fontSize(20).text('Agreement and House Rules', { align: 'center' });
+        doc.fontSize(20).text('Flatting Agreement and House Rules', { align: 'center' });
         doc.moveDown();
         
         doc.fontSize(14).text('Agreement', { underline: true });
