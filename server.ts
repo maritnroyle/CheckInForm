@@ -87,9 +87,9 @@ async function startServer() {
         doc.text('- No smoking or vaping inside the house.');
         doc.text('- No pets are permitted.');
         doc.text('- Use of drugs or any form of illegal substances are strictly prohibited.');
-        doc.text('- We have zero tolerance for violence or disruptive behavior - Please report any concerns or incidents to us immediately.');
         doc.text('- No shoes are allowed inside the house or on the carpets.');
-        doc.moveDown(0.5);
+        doc.font('Helvetica-Oblique').text('- Note: We have zero tolerance for violence or disruptive behavior - Please report any concerns or incidents to us immediately.');
+        doc.font('Helvetica').moveDown(0.5);
 
         doc.fontSize(12).text('Kitchen and Fridge', { underline: true });
         doc.fontSize(12).text('- Please organize your belongings in the food cabinets and fridges accordingly. Storage is limited to one shelf per room (shared by two people). With two fridge/freezers available, there is ample space for everyone if kept organized.');
@@ -197,8 +197,8 @@ async function startServer() {
         from: process.env.GMAIL_USER,
         to: email,
         subject: "Check-in Confirmation",
-        text: `Dear ${fullName},\n\nThank you for completing your check-in for WhiteCloud Homestay.\n\nYour check-in date is ${formattedCheckIn} and check-out date is ${formattedCheckOut}.\n\nPlease find attached a copy of the Agreement and House Rules with your signature.\n\nWe look forward to hosting you!\n\nBest regards,\nWhiteCloud Homestay`,
-        html: `<p>Dear ${fullName},</p><p>Thank you for completing your check-in for WhiteCloud Homestay.</p><p>Your check-in date is <strong>${formattedCheckIn}</strong> and check-out date is <strong>${formattedCheckOut}</strong>.</p><p>Please find attached a copy of the Agreement and House Rules with your signature.</p><p>We look forward to hosting you!</p><p>Best regards,<br/>WhiteCloud Homestay</p>`,
+        text: `Dear ${fullName},\n\nThank you for completing your check-in for WhiteCloud Homestay.\n\nYour check-in date is ${formattedCheckIn} and check-out date is ${formattedCheckOut}.\n\nPlease find attached a copy of the Flatting Agreement and House Rules.\n\nWe look forward to hosting you!\n\nBest regards,\nWhiteCloud Homestay`,
+        html: `<p>Dear ${fullName},</p><p>Thank you for completing your check-in for WhiteCloud Homestay.</p><p>Your check-in date is <strong>${formattedCheckIn}</strong> and check-out date is <strong>${formattedCheckOut}</strong>.</p><p>Please find attached a copy of the Flatting Agreement and House Rules.</p><p>We look forward to hosting you!</p><p>Best regards,<br/>WhiteCloud Homestay</p>`,
         attachments: [
           {
             filename: 'Agreement_and_House_Rules.pdf',

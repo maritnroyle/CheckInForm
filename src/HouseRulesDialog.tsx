@@ -37,8 +37,8 @@ export function HouseRulesDialog() {
               <li>No smoking or vaping inside the house.</li>
               <li>No pets are permitted.</li>
               <li>Use of drugs or any form of illegal substances are strictly prohibited.</li>
-              <li>We have zero tolerance for violence or disruptive behavior - Please report any concerns or incidents to us immediately.</li>
               <li>No shoes are allowed inside the house or on the carpets.</li>
+              <li className="italic">Note: We have zero tolerance for violence or disruptive behavior - Please report any concerns or incidents to us immediately.</li>
             </ul>
           </section>
 
