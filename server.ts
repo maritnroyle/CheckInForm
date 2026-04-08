@@ -117,7 +117,7 @@ async function startServer() {
         doc.fontSize(12).text('Bedrooms', { underline: true });
         doc.fontSize(12).text('- A healthy room starts from good sunlight and lots of ventilation. Please open up the curtains and air up your room on a regular basis to prevent build up of mold and mildew - this is for your own benefits!');
         doc.text('- Keep your room clean and tidy and vacuum it regularly.');
-        doc.text('- Do not use any personal heating appliances in your room (i.e. electric heater etc), as this may cause overload on the main circuit breaker and pose fire risk.');
+        doc.text('- Do not use any personal heating appliances in your room (e.g. electric heater etc), as this may cause overload on the electrical circuit and pose fire risk. Please use the provided electric blanket and ensuring it is turned off when leaving the room.');
         doc.moveDown(0.5);
 
         doc.fontSize(12).text('Bathrooms', { underline: true });
